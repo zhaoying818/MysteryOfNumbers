@@ -1,4 +1,7 @@
 package com.zy.test;
+
+import java.util.Scanner;
+
 /** 
  * @author ZhaoYing E-mail:zhaoying1258@qq.com 
  * @version Creation-time：2015年8月18日 下午8:05:54 
@@ -20,8 +23,8 @@ public class NumOfBottomZeroInFactorial_N {
 	}
 
 	public static void main(String[] args) {
-
-		int n = 5;
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
 		System.out.println(n + "!的末尾有" + countNum(n) + "个0");
 	}
 
