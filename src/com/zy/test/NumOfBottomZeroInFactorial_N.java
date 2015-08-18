@@ -6,18 +6,15 @@ package com.zy.test;
 public class NumOfBottomZeroInFactorial_N {
 	
 	/**
-	 * 通过质因数分解(2^X)*(3^Y)*(5^Z)来求解
+	 * NumOfBottomZeroInFactorial_N2.0方法的改进
 	 * @param n
 	 * @return
 	 */
 	public static int countNum(int n){
 		int result = 0;
-		for(int i=1;i<=n;i++){
-			int j = i;
-			while(j%5==0){
-				result++;
-				j /= 5;
-			}
+		while(n>0){
+			result += n/5;
+			n /= 5;
 		}
 		return result;
 	}
