@@ -7,12 +7,25 @@ package com.zy.test;
  */
 public class CountOfOneInBinarySystem {
 	
+//	public static int countOfOneInBinS(int n){
+//		int num = 0;
+//		while(n>0){
+//			if(n%2==1)
+//				num++;
+//			n = (byte) (n/2);
+//		}
+//		return num;
+//	}
+	
+	
+	/**
+	 * 移位之后，使用位操作判断是否存在1
+	 */
 	public static int countOfOneInBinS(int n){
 		int num = 0;
 		while(n>0){
-			if(n%2==1)
-				num++;
-			n = (byte) (n/2);
+			num += n &0x01;
+			n >>= 1;
 		}
 		return num;
 	}
