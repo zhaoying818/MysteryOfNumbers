@@ -5,25 +5,21 @@ package com.zy.test;
  */
 public class NumOfBottomZeroInFactorial_N {
 	
+	/**
+	 * 通过质因数分解(2^X)*(3^Y)*(5^Z)来求解
+	 * @param n
+	 * @return
+	 */
 	public static int countNum(int n){
 		int result = 0;
-		int tmp = factorial(n);
-		while(tmp>0){
-			if(tmp%10==0){
+		for(int i=1;i<=n;i++){
+			int j = i;
+			while(j%5==0){
 				result++;
-				tmp /= 10;
+				j /= 5;
 			}
-			else
-				break;
 		}
 		return result;
-	}
-	
-	public static int factorial(int x){
-		if(x==0 || x==1)
-			return 1;
-		else
-			return x*factorial(x-1);
 	}
 
 	public static void main(String[] args) {
