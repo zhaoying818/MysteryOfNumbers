@@ -7,35 +7,17 @@ package com.zy.test;
  */
 public class CountOfOneInBinarySystem {
 	
-//	public static int countOfOneInBinS(int n){
-//		int num = 0;
-//		while(n>0){
-//			if(n%2==1)
-//				num++;
-//			n = (byte) (n/2);
-//		}
-//		return num;
-//	}
-	
-	
-//	/**
-//	 * 移位之后，使用位操作判断是否存在1
-//	 */
-//	public static int countOfOneInBinS(int n){
-//		int num = 0;
-//		while(n>0){
-//			num += n &0x01;
-//			n >>= 1;
-//		}
-//		return num;
-//	}
-	
+	/**
+	 * MIT HAKMEM算法
+	 * @param n
+	 * @return
+	 */
 	public static int countOfOneInBinS(int n){
-		int num =0;
-		while(n>0){
-			n &= (n-1);
-			num++;
-		}
+		int num;
+		num = n - ((n>>1)&033333333333)
+				- ((n>>2)&011111111111); 
+		num = (num + (num>>3))&030707070707;
+		num = num % 63;
 		return num;
 	}
 	
