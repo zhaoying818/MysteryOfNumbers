@@ -5,28 +5,29 @@ package com.zy.test;
  */
 public class NumberOfOne {
 	
-	/**
-	 * 求解数字n中1的个数
-	 * @param n
-	 * @return
-	 */
-	public static int count1InAinteger(int n){
-		int num = 0;
-		while(n!=0){
-			num += (n%10==1)?1:0;
-			n /= 10;
-		}
-		return num;
-	}
-	/**
-	 * 求解数字(1,2,…，N)中1的个数之和
-	 * @param n
-	 * @return
-	 */
+	
 	public static int getNum1(int n){
 		int count = 0;
-		for(int i=1;i<=n;i++)
-			count += count1InAinteger(i);
+		int factor = 1;
+		int lowNum = 0;
+		int currNum = 0;
+		int highNun = 0;
+		while(n/factor!=0){
+			lowNum = n-(n/factor)*factor;
+			currNum = (n/factor)%10;
+			highNun = n/(factor*10);
+			switch(currNum){
+			case 0:
+				count += highNun*factor;
+				break;
+			case 1:
+				count +=highNun*factor+lowNum+1;
+				break;
+			default:
+				count += (highNun+1)*factor;
+			}
+			factor *= 10;
+		}
 		return count;
 	}
 
