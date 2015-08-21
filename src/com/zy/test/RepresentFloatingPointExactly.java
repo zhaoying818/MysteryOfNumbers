@@ -49,12 +49,12 @@ public class RepresentFloatingPointExactly {
 				strLimit.append(c[i]);
 		}
 		
-		
 		//StringBuffer转换为String
 		String sInt = strInt.toString();
 		String sLimit = strLimit.toString();
 		String sUnlimit = strUnlimit.toString();
 		
+		//计算整数部分、不循环部分和循环部分的长度
 		int strLenInt = strInt.length();
 		int strLenLimit = strLimit.length();
 		int strLenUnlimit = strUnlimit.length();
@@ -85,8 +85,8 @@ public class RepresentFloatingPointExactly {
 			denominator = (long)(Math.pow(10, strLenLimit));
 			numerator = numLimit + numInt*denominator;
 		}
-		System.out.println(denominator);
-		System.out.println(numerator);
+//		System.out.println(denominator);
+//		System.out.println(numerator);
 		
 		//约分
 		long GCD = gcd(numerator, denominator);
@@ -99,14 +99,12 @@ public class RepresentFloatingPointExactly {
 		String ret = fenzi + "/" + fenmu;
 		return ret;
 	}
-	
-	
-	
 
 	public static void main(String[] args) {
-		String num = new String("1.(3)");
-		System.out.println(represtFP(num));
-
+		
+		System.out.println("1.3可以精确表示为：" + represtFP("1.3"));
+		System.out.println("1.3(3)可以精确表示为：" + represtFP("1.3(3)"));
+		System.out.println("1.02(3)可以精确表示为：" + represtFP("1.02(3)"));
 	}
 
 }
