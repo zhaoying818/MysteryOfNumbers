@@ -7,7 +7,7 @@ package com.zy.test;
 public class Fibonacci {
 
 	/**
-	 * 递归方法
+	 * 空间换时间
 	 */
 	public static int fibonacci(int n) {
 		if (n <= 0)
@@ -15,7 +15,15 @@ public class Fibonacci {
 		else if (n == 1)
 			return 1;
 		else {
-			return fibonacci(n-1) + fibonacci(n-2);
+			int a=1,b=0;
+			int tmp;
+		    while(n >= 2){
+		        tmp = a;
+		        a = a + b;
+		        b = tmp;
+		        n--;
+		    }
+		    return a;
 		}
 	}
 
