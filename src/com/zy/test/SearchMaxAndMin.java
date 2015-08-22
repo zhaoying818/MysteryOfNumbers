@@ -13,8 +13,6 @@ public class SearchMaxAndMin {
 		for(int i=0;i<a.length;i++){
 			if(MAX<a[i])
 				MAX = a[i];
-		}
-		for(int i=0;i<a.length;i++){
 			if(MIN>a[i])
 				MIN = a[i];
 		}
