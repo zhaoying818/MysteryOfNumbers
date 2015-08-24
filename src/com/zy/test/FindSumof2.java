@@ -1,4 +1,7 @@
 package com.zy.test;
+
+import java.util.Arrays;
+
 /** 
  * @author ZhaoYing E-mail:zhaoying1258@qq.com 
  * @version Creation-time：2015年8月24日 下午5:45:37 
@@ -6,20 +9,22 @@ package com.zy.test;
 public class FindSumof2 {
 	
 	/**
-	 * 遍历法
+	 * 先排序，然后双向遍历
 	 * @param a
 	 * @return
 	 */
 	public static int[] findSum(int a[] ,int sum){
-		int len = a.length;
-		int index1=0,index2=0;
-		for(int i=0;i<len-1;i++)
-			for(int j=i+1;j<len;j++){
-				if(a[i]+a[j]==sum){
-					return new int[]{a[i],a[j]};
-				}
-			
-			}
+		Arrays.sort(a);
+		int i = 0;
+		int j = a.length-1;
+		while(i<j){
+			if(a[i]+a[j]>sum)
+				j--;
+			else if(a[i]+a[j]<sum)
+				i++;
+			else
+				return new int[]{a[i],a[j]};
+		}
 		return null;
 	}
 
