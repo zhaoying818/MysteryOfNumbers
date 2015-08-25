@@ -11,17 +11,22 @@ package com.zy.test;
 public class GetMaxSumOfSub {
 	
 	/**
+	 * 返回子数组和最大值以及，子数组的始末位置
 	 * 求最大和，那就一直累加呗，只要大于0，就说明当前的“和”可以继续增大，
 	 * 如果小于0了，说明“之前的最大和”已经不可能继续增大了，就从新开始
 	 */
-	public static int getMaxSum(int[] a ){
+	public static int[] getMaxSum(int[] a ){
 		int maxSum = Integer.MIN_VALUE;
 	    int sum = 0;
+	    int start = 0;
+	    int curStart = 0;
+	    int end= 0;
 	    for(int i = 0; i < a.length; ++i)
 	    {
 	        if(sum < 0)
 	        {
 	            sum = a[i];
+	            curStart = i;//记录当前起始位置 
 	        }else
 	        {
 	            sum += a[i];
@@ -29,15 +34,19 @@ public class GetMaxSumOfSub {
 	        if(sum > maxSum)
 	        {
 	            maxSum = sum;
+	            start = curStart;
+	            end = i;
 	        }
 	    }
-	    return maxSum;
+	    return new int[]{maxSum,start,end};
 	}
 
 	public static void main(String[] args) {
 		int[] a = {-2,5,3,-6,4,-8,6};
-		int MAXSUM = getMaxSum(a);
-		System.out.println(MAXSUM);
+		int[] MAXSUM = getMaxSum(a);
+		System.out.println("子数组和的最大值:" + MAXSUM[0]);
+		System.out.println("起始位置:" + MAXSUM[1]);
+		System.out.println("结束位置:" + MAXSUM[2]);
 
 	}
 
