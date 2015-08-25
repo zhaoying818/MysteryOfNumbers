@@ -18,15 +18,13 @@ public class GetMaxSumOfSub {
 	 */
 	public static int getMaxSum(int[] a ){
 		int len = a.length;
-		int[] Start = new int[len];
-		int[] All = new int[len];
-		Start[len-1] = a[len-1];
-		All[len-1] = a[len-1];
+		int Start= a[len-1];
+		int All = a[len-1];
 		for(int i=len-2;i>=0;i--){
-			Start[i] = Math.max(a[i], a[i]+Start[i+1]);
-			All[i] = Math.max(Start[i], All[i+1]);
+			Start = Math.max(a[i], a[i]+Start);
+			All = Math.max(Start, All);
 		}
-		return All[0];
+		return All;
 	}
 
 	public static void main(String[] args) {
