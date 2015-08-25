@@ -11,20 +11,22 @@ package com.zy.test;
 public class GetMaxSumOfSub {
 	
 	/**
-	 * 遍历法
+	 * 假设我们已经知道(A[k].....A[n-1])最大的一段数组和为All[k]，
+	 * 并且已经计算出在(A[k].....A[n-1])中包含A[k]的最大的一段数组和为Start[k]，
+	 * 那么可以推断出All[k-1]=max{A[k-1]，A[k-1]+Start[k]，All[k]}，
+	 * 利用动态规划思想以及这样的递推公式，从后往前计算
 	 */
 	public static int getMaxSum(int[] a ){
-		int maxSum = Integer.MIN_VALUE;
-		int Sum;
-		for(int i=0;i<a.length;i++){
-			Sum = 0;
-			for(int j=i;j<a.length;j++){
-				Sum += a[j];
-				if(Sum>maxSum)
-					maxSum = Sum;
-			}
+		int len = a.length;
+		int[] Start = new int[len];
+		int[] All = new int[len];
+		Start[len-1] = a[len-1];
+		All[len-1] = a[len-1];
+		for(int i=len-2;i>=0;i--){
+			Start[i] = Math.max(a[i], a[i]+Start[i+1]);
+			All[i] = Math.max(Start[i], All[i+1]);
 		}
-		return maxSum;
+		return All[0];
 	}
 
 	public static void main(String[] args) {
