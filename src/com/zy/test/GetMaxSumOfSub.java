@@ -11,20 +11,27 @@ package com.zy.test;
 public class GetMaxSumOfSub {
 	
 	/**
-	 * 假设我们已经知道(A[k].....A[n-1])最大的一段数组和为All[k]，
-	 * 并且已经计算出在(A[k].....A[n-1])中包含A[k]的最大的一段数组和为Start[k]，
-	 * 那么可以推断出All[k-1]=max{A[k-1]，A[k-1]+Start[k]，All[k]}，
-	 * 利用动态规划思想以及这样的递推公式，从后往前计算
+	 * 求最大和，那就一直累加呗，只要大于0，就说明当前的“和”可以继续增大，
+	 * 如果小于0了，说明“之前的最大和”已经不可能继续增大了，就从新开始
 	 */
 	public static int getMaxSum(int[] a ){
-		int len = a.length;
-		int Start= a[len-1];
-		int All = a[len-1];
-		for(int i=len-2;i>=0;i--){
-			Start = Math.max(a[i], a[i]+Start);
-			All = Math.max(Start, All);
-		}
-		return All;
+		int maxSum = Integer.MIN_VALUE;
+	    int sum = 0;
+	    for(int i = 0; i < a.length; ++i)
+	    {
+	        if(sum < 0)
+	        {
+	            sum = a[i];
+	        }else
+	        {
+	            sum += a[i];
+	        }
+	        if(sum > maxSum)
+	        {
+	            maxSum = sum;
+	        }
+	    }
+	    return maxSum;
 	}
 
 	public static void main(String[] args) {
