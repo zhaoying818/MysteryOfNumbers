@@ -6,17 +6,39 @@ package com.zy.test;
 public class LongestIncreasingSubsequence {
 	
 	public static int getLIS(int[] a){
+
 		int[] LIS = new int[a.length];
-		for(int i=0;i<a.length;i++){
-			LIS[i]=1;
-			for(int j=0;j<i;j++){
-				if(a[i]>a[j] && LIS[j]+1>LIS[i])
-					LIS[i] = LIS[j]+1;
+		//记录数组中的递增序列信息
+		int[] MaxV = new int[a.length+1];
+		MaxV[1] = a[0];
+		int min = Integer.MAX_VALUE;
+		for(int i=0;i<a.length;i++)
+			min = Math.min(min, a[i]);
+		MaxV[0] = min - 1;
+		
+		//初始化最长递增序列的信息
+		for(int i=0;i<LIS.length;i++)
+			LIS[i] = 1;
+		
+		int maxLIS = 1;
+		for(int i=1;i<a.length;i++){
+			//遍历历史最长递增序列信息
+			int j;
+			for(j=maxLIS;j>=0;j--){
+				if(a[i]>MaxV[j]){
+					LIS[i] = j+1;
+					break;
+				}
+			}
+			//如果当前最长序列大于最长递增序列长度，更新最长信息
+			if(LIS[i]>maxLIS){
+				maxLIS = LIS[i];
+				MaxV[LIS[i]] = a[i];
+			}
+			else if(MaxV[j]<a[i] && a[i]<MaxV[j+1]){
+				MaxV[j+1] = a[i];
 			}
 		}
-		int maxLIS = 1;
-		for(int i=0;i<a.length;i++)
-			maxLIS = Math.max(maxLIS, LIS[i]);
 		return maxLIS;
 	}
 
