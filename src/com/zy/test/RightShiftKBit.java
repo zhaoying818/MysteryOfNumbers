@@ -7,16 +7,31 @@ public class RightShiftKBit {
 	
 	/**
 	 * 数组循环向右移动K位
+	 * 原数组看成两部分，分别进行交换
+	 * 通过逆序来完成
+	 * 
+	 * 1.abcd1234（假设向右移动4位）
+	 * 2.dcba1234
+	 * 3.dcba4321
+	 * 4.1234abcd
 	 * @return
 	 */
 	public static int[] getRightShiftK(int[] a, int k){
 		int len = a.length;
 		k %= len;
-		while((k--)>0){
-			int t= a[len-1];
-			for(int i = len-1;i>0;i--)
-				a[i]= a[i-1];
-			a[0]= t;
+		reverse(a, 0, len-k-1);
+		reverse(a,len-k,len-1);
+		reverse(a,0,len-1);
+		return a;
+	}
+	
+	public static int[] reverse(int[] a,int left,int right){
+		while(left<right){
+			int temp = a[right];
+			a[right] = a[left];
+			a[left] = temp;
+			left++;
+			right--;
 		}
 		return a;
 	}
